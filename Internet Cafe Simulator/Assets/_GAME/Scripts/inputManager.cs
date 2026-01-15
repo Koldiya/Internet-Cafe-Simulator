@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class inputManager : MonoBehaviour
 {
@@ -12,6 +14,13 @@ public class inputManager : MonoBehaviour
 
         action = new InputSystem_Actions();
         action.Player.Enable();
+
+        action.Player.Interact.performed += GetGetInteractObj;
+    }
+
+    private void GetGetInteractObj(InputAction.CallbackContext context)
+    {
+         
     }
 
     public Vector2 getMovementInput()
