@@ -6,7 +6,7 @@ public class inputManager : MonoBehaviour
 {
     public static inputManager Instance { get; private set; }
 
-    InputSystem_Actions action;
+    public InputSystem_Actions action;
 
     private void Awake()
     {
@@ -14,13 +14,6 @@ public class inputManager : MonoBehaviour
 
         action = new InputSystem_Actions();
         action.Player.Enable();
-
-        action.Player.Interact.performed += GetGetInteractObj;
-    }
-
-    private void GetGetInteractObj(InputAction.CallbackContext context)
-    {
-         
     }
 
     public Vector2 getMovementInput()

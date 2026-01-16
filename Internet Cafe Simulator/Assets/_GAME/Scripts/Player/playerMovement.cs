@@ -13,6 +13,12 @@ public class playerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = inputManager.Instance.getMovementInput().normalized * moveSpeed * 100 * Time.fixedDeltaTime;
+        Vector2 input = inputManager.Instance.getMovementInput();
+        SpriteRenderer playerSprite = GetComponent<SpriteRenderer>();
+
+        if(input.x > 0) transform.eulerAngles = Vector3.up * 0;
+        else if (input.x < 0) transform.eulerAngles = Vector3.up * 180;
+
+        rb.linearVelocity = input.normalized * moveSpeed * 100 * Time.fixedDeltaTime;
     }
 }
