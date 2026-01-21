@@ -14,7 +14,6 @@ public class playerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 input = inputManager.Instance.getMovementInput();
-        SpriteRenderer playerSprite = GetComponent<SpriteRenderer>();
 
         if(input.x > 0) transform.eulerAngles = Vector3.up * 0;
         else if (input.x < 0) transform.eulerAngles = Vector3.up * 180;

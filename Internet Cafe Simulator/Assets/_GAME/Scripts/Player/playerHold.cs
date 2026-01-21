@@ -17,13 +17,20 @@ public class playerHold : MonoBehaviour
         inputManager.Instance.action.Player.Interact.performed += onInteractPressed;
     }
 
-    
+    private void Update()
+    {
+        if (isHold)
+        {
+            // holdObj.transform.position = Vector3Int.FloorToInt(transform.position + transform.right * 1f + transform.up * 0.5f); //duzelt
+        }
+    }
+
 
     void onInteractPressed(InputAction.CallbackContext context)
     {
-        if(context.ReadValueAsButton())
+        if (context.ReadValueAsButton())
         {
-            if(!isHold)
+            if (!isHold)
             {
                 Collider2D hit = Physics2D.OverlapCircle(transform.position + transform.right * 0.5f, 0.6f, holdLayer);
                 if (hit)
@@ -41,15 +48,14 @@ public class playerHold : MonoBehaviour
                         if (Vector3.Distance(transform.position + transform.right * 0.6f, hit.transform.position) < 0.1f) //hedefe vardiysa
                         {
                             hit.transform.position = transform.position + transform.right * 0.6f;
+
+                            hit.transform.SetParent(transform, true);
+                            holdObj = hit.gameObject;
+                            isHold = true;
+
                             holdMoveStartTween.Kill();
                         }
                     });
-
-                    hit.transform.SetParent(transform, true);
-
-                    holdObj = hit.gameObject;
-
-                    isHold = true;
                 }
             }
             else //grid sistemi yap (danis)
@@ -63,7 +69,7 @@ public class playerHold : MonoBehaviour
                 holdObj = null;
                 isHold = false;
             }
-            
+
         }
     }
 
