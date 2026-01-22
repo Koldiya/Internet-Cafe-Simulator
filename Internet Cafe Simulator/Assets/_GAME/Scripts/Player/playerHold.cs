@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class playerHold : MonoBehaviour
 {
+    [SerializeField] GameObject mouseObj;
+
     [SerializeField] LayerMask holdLayer;
 
     bool isHold = false;
@@ -23,6 +25,13 @@ public class playerHold : MonoBehaviour
         {
             // holdObj.transform.position = Vector3Int.FloorToInt(transform.position + transform.right * 1f + transform.up * 0.5f); //duzelt
         }
+
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        mouseWorldPos.z = 0;
+        mouseObj.transform.position = new Vector3(Mathf.RoundToInt(mouseWorldPos.x), Mathf.RoundToInt(mouseWorldPos.y), 0);
+
+
     }
 
 
